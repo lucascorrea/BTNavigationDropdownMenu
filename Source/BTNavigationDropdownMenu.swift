@@ -661,4 +661,14 @@ open class BTNavigationDropdownMenu: UIView {
     @objc func menuButtonTapped(_ sender: UIButton) {
         self.isShown == true ? hideMenu() : showMenu()
     }
+    
+    func getImages() -> [UIImage] {
+        guard imageMode else { return [] }
+        return images
+    }
+    
+    func getItems() -> [String] {
+        guard !imageMode else { return [] }
+        return items
+    }
 }
