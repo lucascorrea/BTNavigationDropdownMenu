@@ -31,10 +31,28 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     // Private properties
     var items: [String] = []
+    var images: [UIImage] = []
     var selectedIndexPath: Int?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(frame: CGRect, images: [UIImage], startIndex: Int, configuration: BTConfiguration) {
+        super.init(frame: frame, style: UITableViewStyle.plain)
+        
+        self.images = images
+        self.selectedIndexPath = startIndex
+        self.configuration = configuration
+        
+        // Setup table view
+        self.delegate = self
+        self.dataSource = self
+        self.backgroundColor = UIColor.clear
+        self.separatorStyle = UITableViewCellSeparatorStyle.none
+        //        self.separatorEffect = UIBlurEffect(style: .Light)
+        self.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        self.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     init(frame: CGRect, items: [String], title: String, configuration: BTConfiguration) {
@@ -67,7 +85,7 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return configuration.imageMode ? self.images.count : self.items.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -75,10 +93,17 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = BTTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell", configuration: self.configuration)
-        cell.textLabel?.text = self.items[(indexPath as NSIndexPath).row]
-        cell.checkmarkIcon.isHidden = ((indexPath as NSIndexPath).row == selectedIndexPath) ? false : true
-        return cell
+        if configuration.imageMode {
+            let image = self.images[(indexPath as NSIndexPath).row]
+            let cell = BTImageTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "ImageCell", configuration: self.configuration, image: image)
+            cell.checkmarkIcon.isHidden = ((indexPath as NSIndexPath).row == selectedIndexPath) ? false : true
+            return cell
+        } else {
+            let cell = BTTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell", configuration: self.configuration)
+            cell.textLabel?.text = self.items[(indexPath as NSIndexPath).row]
+            cell.checkmarkIcon.isHidden = ((indexPath as NSIndexPath).row == selectedIndexPath) ? false : true
+            return cell
+        }
     }
     
     // Table view delegate

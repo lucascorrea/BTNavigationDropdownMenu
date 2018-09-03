@@ -43,6 +43,7 @@ final class BTConfiguration {
     var maskBackgroundColor: UIColor!
     var maskBackgroundOpacity: CGFloat!
     var shouldChangeTitleText: Bool!
+    var imageMode: Bool!
     
     init() {
         self.defaultValue()
@@ -76,5 +77,6 @@ final class BTConfiguration {
         self.maskBackgroundColor = UIColor.black
         self.maskBackgroundOpacity = 0.3
         self.shouldChangeTitleText = true
+        self.imageMode = false
     }
 }
