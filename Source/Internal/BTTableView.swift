@@ -96,7 +96,6 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         if configuration.imageMode {
             let image = self.images[(indexPath as NSIndexPath).row]
             let cell = BTImageTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "ImageCell", configuration: self.configuration, image: image)
-            cell.checkmarkIcon.isHidden = ((indexPath as NSIndexPath).row == selectedIndexPath) ? false : true
             return cell
         } else {
             let cell = BTTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell", configuration: self.configuration)
