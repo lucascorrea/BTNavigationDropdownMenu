@@ -420,7 +420,7 @@ open class BTNavigationDropdownMenu: UIView {
         self.menuImageTitle.isUserInteractionEnabled = true
         self.menuButton.addSubview(self.menuImageTitle)
         
-        self.menuArrow = UIImageView(image: self.configuration.arrowImage)
+        self.menuArrow = UIImageView(image: self.configuration.arrowImage.withRenderingMode(.alwaysTemplate))
         self.menuButton.addSubview(self.menuArrow)
         
         let menuWrapperBounds = window.bounds
