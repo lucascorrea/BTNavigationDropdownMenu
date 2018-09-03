@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         self.selectedCellLabel.text = "??????"
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.0/255.0, green:180/255.0, blue:220/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
         menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, containerView: self.navigationController!.view, title: #imageLiteral(resourceName: "logo-timeslive"), images: images)
         
