@@ -402,7 +402,7 @@ open class BTNavigationDropdownMenu: UIView {
         }
         
         // Set frame
-        let frame = CGRect(x: 0, y: 0, width: 100 + (self.configuration.arrowPadding + self.configuration.arrowImage.size.width)*2, height: 25)
+        let frame = CGRect(x: 16, y: 0, width: 100 + (self.configuration.arrowPadding + self.configuration.arrowImage.size.width)*2, height: 25)
         
         super.init(frame:frame)
         
