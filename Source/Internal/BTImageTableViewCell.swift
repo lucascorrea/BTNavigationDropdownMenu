@@ -43,7 +43,7 @@ class BTImageTableViewCell: UITableViewCell {
         self.selectionStyle = UITableViewCellSelectionStyle.none
 
         let imageWidth = (25 / image.size.height) * image.size.width
-        self.cellImage = UIImageView(frame: CGRect(x: 0, y: (cellContentFrame.height - 25)/2, width: imageWidth, height: 25))
+        self.cellImage = UIImageView(frame: CGRect(x: 16, y: (cellContentFrame.height - 25)/2, width: imageWidth, height: 25))
         self.cellImage.contentMode = UIViewContentMode.scaleAspectFit
         self.cellImage.image = image
         self.contentView.addSubview(self.cellImage)
