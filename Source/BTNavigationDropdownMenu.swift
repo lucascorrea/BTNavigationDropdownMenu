@@ -420,7 +420,7 @@ open class BTNavigationDropdownMenu: UIView {
         self.menuImageTitle.isUserInteractionEnabled = true
         self.menuButton.addSubview(self.menuImageTitle)
         
-        self.menuArrow = UIImageView(image: self.configuration.arrowImage.withRenderingMode(.alwaysTemplate))
+        self.menuArrow = UIImageView(image: self.configuration.arrowImage)
         self.menuButton.addSubview(self.menuArrow)
         
         let menuWrapperBounds = window.bounds
@@ -662,12 +662,12 @@ open class BTNavigationDropdownMenu: UIView {
         self.isShown == true ? hideMenu() : showMenu()
     }
     
-    func getImages() -> [UIImage] {
+    open func getImages() -> [UIImage] {
         guard imageMode else { return [] }
         return images
     }
     
-    func getItems() -> [String] {
+    open func getItems() -> [String] {
         guard !imageMode else { return [] }
         return items
     }
