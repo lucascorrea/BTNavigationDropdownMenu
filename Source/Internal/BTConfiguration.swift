@@ -44,6 +44,7 @@ final class BTConfiguration {
     var maskBackgroundOpacity: CGFloat!
     var shouldChangeTitleText: Bool!
     var imageMode: Bool!
+    var dynamicSelection: [Bool]?
     
     init() {
         self.defaultValue()
@@ -78,5 +79,6 @@ final class BTConfiguration {
         self.maskBackgroundOpacity = 0.3
         self.shouldChangeTitleText = true
         self.imageMode = false
+        self.dynamicSelection = nil
     }
 }

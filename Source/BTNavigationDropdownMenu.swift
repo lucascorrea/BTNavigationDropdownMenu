@@ -228,6 +228,15 @@ open class BTNavigationDropdownMenu: UIView {
             self.configuration.imageMode = value
         }
     }
+    
+    open var dynamicSelection: [Bool]? {
+        get {
+            return self.configuration.dynamicSelection
+        }
+        set(value) {
+            self.configuration.dynamicSelection = value
+        }
+    }
 
     open var didSelectItemAtIndexHandler: ((_ indexPath: Int) -> ())?
     open var isShown: Bool!
@@ -452,9 +461,15 @@ open class BTNavigationDropdownMenu: UIView {
                 return
             }
             selfie.didSelectItemAtIndexHandler!(indexPath)
-            if selfie.shouldChangeTitleText! {
+            
+            if let dynamic = selfie.dynamicSelection?[indexPath] {
+                if dynamic {
+                    selfie.setMenuImageTitle(selfie.tableView.images[indexPath])
+                }
+            } else if selfie.shouldChangeTitleText {
                 selfie.setMenuImageTitle(selfie.tableView.images[indexPath])
             }
+            
             self?.hideMenu()
             self?.layoutSubviews()
         }
