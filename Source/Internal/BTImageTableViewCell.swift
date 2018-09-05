@@ -41,8 +41,8 @@ class BTImageTableViewCell: UITableViewCell {
         self.contentView.backgroundColor = backgroundColor ?? self.configuration.cellBackgroundColor
         self.selectionStyle = UITableViewCellSelectionStyle.none
 
-        let imageWidth = (25 / image.size.height) * image.size.width
-        self.cellImage = UIImageView(frame: CGRect(x: 16, y: (cellContentFrame.height - 25)/2, width: imageWidth, height: 25))
+        let imageWidth = (self.configuration.cellImageHeight / image.size.height) * image.size.width
+        self.cellImage = UIImageView(frame: CGRect(x: 16, y: (cellContentFrame.height - self.configuration.cellImageHeight)/2, width: imageWidth, height: self.configuration.cellImageHeight))
         self.cellImage.contentMode = UIViewContentMode.scaleAspectFit
         self.cellImage.image = image
         self.contentView.addSubview(self.cellImage)

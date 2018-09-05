@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         menuView.dynamicBackgrounds = [.brown, .white, .white]
         menuView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 5))
         menuView.tableFooterView.backgroundColor = .red
+        menuView.cellImageHeight = 20
         menuView.cellHeight = 50
         menuView.arrowPadding = 15
         menuView.animationDuration = 0.5

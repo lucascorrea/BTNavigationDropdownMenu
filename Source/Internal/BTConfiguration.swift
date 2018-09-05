@@ -48,6 +48,7 @@ final class BTConfiguration {
     var dynamicBackgrounds: [UIColor]?
     var footerView: UIView!
     var titleImageHeight: CGFloat!
+    var cellImageHeight: CGFloat!
     
     init() {
         self.defaultValue()
@@ -86,5 +87,6 @@ final class BTConfiguration {
         self.dynamicBackgrounds = nil
         self.footerView = UIView(frame: .zero)
         self.titleImageHeight = 25
+        self.cellImageHeight = 25
     }
 }

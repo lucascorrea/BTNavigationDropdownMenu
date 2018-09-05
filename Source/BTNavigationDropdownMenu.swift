@@ -266,6 +266,15 @@ open class BTNavigationDropdownMenu: UIView {
         }
     }
 
+    open var cellImageHeight: CGFloat {
+        get {
+            return self.configuration.cellImageHeight
+        }
+        set(value) {
+            self.configuration.cellImageHeight = value
+        }
+    }
+    
     open var didSelectItemAtIndexHandler: ((_ indexPath: Int) -> ())?
     open var isShown: Bool!
 
