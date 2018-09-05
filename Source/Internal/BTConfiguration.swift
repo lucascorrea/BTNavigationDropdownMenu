@@ -45,6 +45,8 @@ final class BTConfiguration {
     var shouldChangeTitleText: Bool!
     var imageMode: Bool!
     var dynamicSelection: [Bool]?
+    var dynamicBackgrounds: [UIColor]?
+    var footerView: UIView!
     
     init() {
         self.defaultValue()
@@ -80,5 +82,7 @@ final class BTConfiguration {
         self.shouldChangeTitleText = true
         self.imageMode = false
         self.dynamicSelection = nil
+        self.dynamicBackgrounds = nil
+        self.footerView = UIView(frame: .zero)
     }
 }

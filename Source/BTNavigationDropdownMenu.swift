@@ -237,6 +237,25 @@ open class BTNavigationDropdownMenu: UIView {
             self.configuration.dynamicSelection = value
         }
     }
+    
+    open var dynamicBackgrounds: [UIColor]? {
+        get {
+            return self.configuration.dynamicBackgrounds
+        }
+        set(value) {
+            self.configuration.dynamicBackgrounds = value
+        }
+    }
+    
+    open var tableFooterView: UIView {
+        get {
+            return self.configuration.footerView
+        }
+        set(value) {
+            self.configuration.footerView = value
+            self.tableView.updateConfiguration(configuration)
+        }
+    }
 
     open var didSelectItemAtIndexHandler: ((_ indexPath: Int) -> ())?
     open var isShown: Bool!
@@ -423,10 +442,12 @@ open class BTNavigationDropdownMenu: UIView {
         self.menuButton.addTarget(self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)), for: UIControlEvents.touchUpInside)
         self.addSubview(self.menuButton)
         
+        let titledTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)));
         self.menuImageTitle = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 25))
         self.menuImageTitle.image = title
         self.menuImageTitle.contentMode = .scaleAspectFit
         self.menuImageTitle.isUserInteractionEnabled = true
+        self.menuImageTitle.addGestureRecognizer(titledTapRecognizer)
         self.menuButton.addSubview(self.menuImageTitle)
         
         self.menuArrow = UIImageView(image: self.configuration.arrowImage.withRenderingMode(.alwaysTemplate))

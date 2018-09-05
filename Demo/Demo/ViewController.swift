@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }
     
     func loadImageExample() {
-        let images = [#imageLiteral(resourceName: "logo-timeslive"), #imageLiteral(resourceName: "logo_e_edition"), #imageLiteral(resourceName: "ic-logo-sunday-times")]
+        let images = [#imageLiteral(resourceName: "logo-timeslive"), #imageLiteral(resourceName: "ic-logo-sunday-times"),#imageLiteral(resourceName: "logo_e_edition")]
         self.selectedCellLabel.text = "??????"
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.0/255.0, green: 180/255.0, blue: 220/255.0, alpha: 1.0)
@@ -30,13 +30,10 @@ class ViewController: UIViewController {
         
         menuView.imageMode = true
         menuView.dynamicSelection = [true, true, false]
+        menuView.dynamicBackgrounds = [.brown, .white, .white]
+        menuView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 5))
+        menuView.tableFooterView.backgroundColor = .red
         menuView.cellHeight = 50
-        menuView.cellBackgroundColor = self.navigationController?.navigationBar.barTintColor
-        menuView.cellSelectionColor = UIColor(red: 0.0/255.0, green: 160.0/255.0, blue: 195.0/255.0, alpha: 1.0)
-        menuView.shouldKeepSelectedCellColor = true
-        menuView.cellTextLabelColor = UIColor.white
-        menuView.cellTextLabelFont = UIFont(name: "Avenir-Heavy", size: 17)
-        menuView.cellTextLabelAlignment = .left
         menuView.arrowPadding = 15
         menuView.animationDuration = 0.5
         menuView.maskBackgroundColor = UIColor.black

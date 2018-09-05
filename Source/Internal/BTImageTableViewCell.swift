@@ -31,14 +31,14 @@ class BTImageTableViewCell: UITableViewCell {
     var cellContentFrame: CGRect!
     var configuration: BTConfiguration!
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, configuration: BTConfiguration, image: UIImage) {
+    init(style: UITableViewCellStyle = .default, reuseIdentifier: String? = nil, configuration: BTConfiguration, image: UIImage, backgroundColor: UIColor? = nil) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.configuration = configuration
         
         // Setup cell
         cellContentFrame = CGRect(x: 0, y: 0, width: (UIApplication.shared.keyWindow?.frame.width)!, height: self.configuration.cellHeight)
-        self.contentView.backgroundColor = self.configuration.cellBackgroundColor
+        self.contentView.backgroundColor = backgroundColor ?? self.configuration.cellBackgroundColor
         self.selectionStyle = UITableViewCellSelectionStyle.none
 
         let imageWidth = (25 / image.size.height) * image.size.width

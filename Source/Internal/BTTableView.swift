@@ -45,14 +45,12 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         self.selectedIndexPath = startIndex
         self.configuration = configuration
         
-        // Setup table view
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = UIColor.clear
         self.separatorStyle = UITableViewCellSeparatorStyle.none
-        //        self.separatorEffect = UIBlurEffect(style: .Light)
         self.autoresizingMask = UIViewAutoresizing.flexibleWidth
-        self.tableFooterView = UIView(frame: CGRect.zero)
+        self.tableFooterView = configuration.footerView
     }
     
     init(frame: CGRect, items: [String], title: String, configuration: BTConfiguration) {
@@ -70,6 +68,12 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         //        self.separatorEffect = UIBlurEffect(style: .Light)
         self.autoresizingMask = UIViewAutoresizing.flexibleWidth
         self.tableFooterView = UIView(frame: CGRect.zero)
+    }
+    
+    func updateConfiguration(_ configuration: BTConfiguration) {
+        self.configuration = configuration
+        self.tableFooterView = configuration.footerView
+        self.reloadData()
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -95,7 +99,7 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if configuration.imageMode {
             let image = self.images[(indexPath as NSIndexPath).row]
-            let cell = BTImageTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "ImageCell", configuration: self.configuration, image: image)
+            let cell = BTImageTableViewCell(configuration: self.configuration, image: image, backgroundColor: self.configuration.dynamicBackgrounds?[indexPath.row])
             return cell
         } else {
             let cell = BTTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell", configuration: self.configuration)
