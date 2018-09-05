@@ -47,6 +47,7 @@ final class BTConfiguration {
     var dynamicSelection: [Bool]?
     var dynamicBackgrounds: [UIColor]?
     var footerView: UIView!
+    var titleImageHeight: CGFloat!
     
     init() {
         self.defaultValue()
@@ -84,5 +85,6 @@ final class BTConfiguration {
         self.dynamicSelection = nil
         self.dynamicBackgrounds = nil
         self.footerView = UIView(frame: .zero)
+        self.titleImageHeight = 25
     }
 }

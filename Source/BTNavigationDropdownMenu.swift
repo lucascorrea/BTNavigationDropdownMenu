@@ -256,6 +256,15 @@ open class BTNavigationDropdownMenu: UIView {
             self.tableView.updateConfiguration(configuration)
         }
     }
+    
+    open var titleImageHeight: CGFloat {
+        get {
+            return self.configuration.titleImageHeight
+        }
+        set(value) {
+            self.configuration.titleImageHeight = value
+        }
+    }
 
     open var didSelectItemAtIndexHandler: ((_ indexPath: Int) -> ())?
     open var isShown: Bool!
@@ -430,9 +439,11 @@ open class BTNavigationDropdownMenu: UIView {
         }
         
         // Set frame
-        let frame = CGRect(x: 0, y: 0, width: 100 + (self.configuration.arrowPadding + self.configuration.arrowImage.size.width)*2, height: 25)
+        let titleRatio = title.size.width/title.size.height
+        let titleWidth = titleRatio * self.configuration.titleImageHeight
+        let frame = CGRect(x: 0, y: 0, width: titleWidth + (self.configuration.arrowPadding + self.configuration.arrowImage.size.width)*2, height: self.configuration.titleImageHeight)
         
-        super.init(frame:frame)
+        super.init(frame: frame)
         
         self.isShown = false
         self.images = images
@@ -442,12 +453,15 @@ open class BTNavigationDropdownMenu: UIView {
         self.menuButton.addTarget(self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)), for: UIControlEvents.touchUpInside)
         self.addSubview(self.menuButton)
         
-        let titledTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)));
-        self.menuImageTitle = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 25))
+//        self.isUserInteractionEnabled = true
+        let titleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)));
+//        self.addGestureRecognizer(titleTapRecognizer)
+        
+        self.menuImageTitle = UIImageView(frame: CGRect(x: 0, y: 0, width: titleWidth, height: titleImageHeight))
         self.menuImageTitle.image = title
         self.menuImageTitle.contentMode = .scaleAspectFit
         self.menuImageTitle.isUserInteractionEnabled = true
-        self.menuImageTitle.addGestureRecognizer(titledTapRecognizer)
+        self.menuImageTitle.addGestureRecognizer(titleTapRecognizer)
         self.menuButton.addSubview(self.menuImageTitle)
         
         self.menuArrow = UIImageView(image: self.configuration.arrowImage.withRenderingMode(.alwaysTemplate))
@@ -691,7 +705,16 @@ open class BTNavigationDropdownMenu: UIView {
     }
     
     func setMenuImageTitle(_ image: UIImage) {
+        let titleRatio = image.size.width/image.size.height
+        let titleWidth = titleRatio * titleImageHeight
+        let newFrame = CGRect(x: 0, y: 0, width: titleWidth + (self.configuration.arrowPadding + self.configuration.arrowImage.size.width)*2, height: titleImageHeight)
+        self.frame = newFrame
+        menuButton.frame = newFrame
+        self.menuImageTitle.frame = CGRect(x: 0, y: 0, width: titleWidth, height: titleImageHeight)
         self.menuImageTitle.image = image
+        self.menuImageTitle.setNeedsLayout()
+        self.menuButton.setNeedsLayout()
+        self.setNeedsLayout()
     }
     
     @objc func menuButtonTapped(_ sender: UIButton) {
