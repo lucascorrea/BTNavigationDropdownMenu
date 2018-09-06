@@ -540,6 +540,9 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     override open func layoutSubviews() {
+        
+        guard let nav = self.navigationController else { return }
+        
         if self.imageMode {
             self.menuImageTitle.center = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
         } else {
@@ -554,7 +557,7 @@ open class BTNavigationDropdownMenu: UIView {
             self.menuArrow.center = CGPoint(x: self.menuTitle.frame.maxX + self.configuration.arrowPadding, y: self.frame.size.height/2)
         }
         
-        self.menuWrapper.frame.origin.y = self.navigationController!.navigationBar.frame.maxY
+        self.menuWrapper.frame.origin.y = nav.navigationBar.frame.maxY
         self.tableView.reloadData()
     }
 
