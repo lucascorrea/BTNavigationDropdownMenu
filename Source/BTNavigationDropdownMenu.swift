@@ -462,9 +462,7 @@ open class BTNavigationDropdownMenu: UIView {
         self.menuButton.addTarget(self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)), for: UIControlEvents.touchUpInside)
         self.addSubview(self.menuButton)
         
-//        self.isUserInteractionEnabled = true
         let titleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)));
-//        self.addGestureRecognizer(titleTapRecognizer)
         
         self.menuImageTitle = UIImageView(frame: CGRect(x: 0, y: 0, width: titleWidth, height: titleImageHeight))
         self.menuImageTitle.image = title
@@ -541,8 +539,6 @@ open class BTNavigationDropdownMenu: UIView {
 
     override open func layoutSubviews() {
         
-        guard let nav = self.navigationController else { return }
-        
         if self.imageMode {
             self.menuImageTitle.center = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
         } else {
@@ -556,6 +552,10 @@ open class BTNavigationDropdownMenu: UIView {
         } else {
             self.menuArrow.center = CGPoint(x: self.menuTitle.frame.maxX + self.configuration.arrowPadding, y: self.frame.size.height/2)
         }
+        
+        //prevents crash when a pop-up view is presented
+        //needs to be moved here to prevent flickering of items in dropdown when view changes
+        guard let nav = self.navigationController else { return }
         
         self.menuWrapper.frame.origin.y = nav.navigationBar.frame.maxY
         self.tableView.reloadData()
