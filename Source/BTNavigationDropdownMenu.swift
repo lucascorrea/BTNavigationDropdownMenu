@@ -40,12 +40,12 @@ open class BTNavigationDropdownMenu: UIView {
     }
     
     // The height of the cell. Default is 50
-    open var cellHeight: NSNumber! {
+    open var cellHeight: CGFloat! {
         get {
-            return self.configuration.cellHeight as NSNumber!
+            return self.configuration.cellHeight
         }
         set(value) {
-            self.configuration.cellHeight = CGFloat(value)
+            self.configuration.cellHeight = value
         }
     }
     
@@ -363,7 +363,7 @@ open class BTNavigationDropdownMenu: UIView {
         
         // Init button as navigation title
         self.menuButton = UIButton(frame: frame)
-        self.menuButton.addTarget(self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)), for: UIControlEvents.touchUpInside)
+        self.menuButton.addTarget(self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         self.addSubview(self.menuButton)
         
         self.menuTitle = UILabel(frame: frame)
@@ -418,7 +418,7 @@ open class BTNavigationDropdownMenu: UIView {
         
         // Add Line on top
         self.topSeparator = UIView(frame: CGRect(x: 0, y: 0, width: menuWrapperBounds.size.width, height: 0.5))
-        self.topSeparator.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        self.topSeparator.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         self.menuWrapper.addSubview(self.topSeparator)
         
         // Remove MenuWrapper from container view to avoid leaks
@@ -459,7 +459,7 @@ open class BTNavigationDropdownMenu: UIView {
         
         // Init button as navigation title
         self.menuButton = UIButton(frame: frame)
-        self.menuButton.addTarget(self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)), for: UIControlEvents.touchUpInside)
+        self.menuButton.addTarget(self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)), for: UIControl.Event.touchUpInside)
         self.addSubview(self.menuButton)
         
         let titleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BTNavigationDropdownMenu.menuButtonTapped(_:)));
@@ -522,7 +522,7 @@ open class BTNavigationDropdownMenu: UIView {
         
         // Add Line on top
         self.topSeparator = UIView(frame: CGRect(x: 0, y: 0, width: menuWrapperBounds.size.width, height: 0.5))
-        self.topSeparator.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        self.topSeparator.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         self.menuWrapper.addSubview(self.topSeparator)
         
         // Remove MenuWrapper from container view to avoid leaks
@@ -667,7 +667,7 @@ open class BTNavigationDropdownMenu: UIView {
         // Reload data to dismiss highlight color of selected cell
         self.tableView.reloadData()
         
-        self.menuWrapper.superview?.bringSubview(toFront: self.menuWrapper)
+        self.menuWrapper.superview?.bringSubviewToFront(self.menuWrapper)
         
         UIView.animate(
             withDuration: self.configuration.animationDuration * 1.5,
@@ -706,7 +706,7 @@ open class BTNavigationDropdownMenu: UIView {
         UIView.animate(
             withDuration: self.configuration.animationDuration,
             delay: 0,
-            options: UIViewAnimationOptions(),
+            options: UIView.AnimationOptions(),
             animations: {
                 if self.imageMode {
                     self.tableView.frame.origin.y = -CGFloat(self.images.count) * self.configuration.cellHeight - 300
