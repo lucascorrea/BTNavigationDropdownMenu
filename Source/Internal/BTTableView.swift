@@ -39,7 +39,7 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     init(frame: CGRect, images: [UIImage], startIndex: Int, configuration: BTConfiguration) {
-        super.init(frame: frame, style: UITableView.Style.plain)
+        super.init(frame: frame, style: .plain)
         
         self.images = images
         self.selectedIndexPath = startIndex
@@ -48,13 +48,13 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = UIColor.clear
-        self.separatorStyle = UITableViewCell.SeparatorStyle.none
-        self.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
+        self.separatorStyle = .none
+        self.autoresizingMask = .flexibleWidth
         self.tableFooterView = configuration.footerView
     }
     
     init(frame: CGRect, items: [String], title: String, configuration: BTConfiguration) {
-        super.init(frame: frame, style: UITableView.Style.plain)
+        super.init(frame: frame, style: .plain)
         
         self.items = items
         self.selectedIndexPath = items.index(of: title)
@@ -64,9 +64,9 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = UIColor.clear
-        self.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.separatorStyle = .none
         //        self.separatorEffect = UIBlurEffect(style: .Light)
-        self.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
+        self.autoresizingMask = .flexibleWidth
         self.tableFooterView = UIView(frame: CGRect.zero)
     }
     
@@ -102,7 +102,7 @@ class BTTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
             let cell = BTImageTableViewCell(configuration: self.configuration, image: image, backgroundColor: self.configuration.dynamicBackgrounds?[indexPath.row])
             return cell
         } else {
-            let cell = BTTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell", configuration: self.configuration)
+            let cell = BTTableViewCell(style: .default, reuseIdentifier: "Cell", configuration: self.configuration)
             cell.textLabel?.text = self.items[(indexPath as NSIndexPath).row]
             cell.checkmarkIcon.isHidden = ((indexPath as NSIndexPath).row == selectedIndexPath) ? false : true
             return cell
