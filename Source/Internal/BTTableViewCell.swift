@@ -31,7 +31,7 @@ class BTTableViewCell: UITableViewCell {
     var cellContentFrame: CGRect!
     var configuration: BTConfiguration!
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, configuration: BTConfiguration) {
+    init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, configuration: BTConfiguration) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.configuration = configuration

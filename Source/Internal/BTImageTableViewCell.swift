@@ -31,7 +31,7 @@ class BTImageTableViewCell: UITableViewCell {
     var cellContentFrame: CGRect!
     var configuration: BTConfiguration!
     
-    init(style: UITableViewCellStyle = .default, reuseIdentifier: String? = nil, configuration: BTConfiguration, image: UIImage, backgroundColor: UIColor? = nil) {
+    init(style: UITableViewCell.CellStyle = .default, reuseIdentifier: String? = nil, configuration: BTConfiguration, image: UIImage, backgroundColor: UIColor? = nil) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.configuration = configuration
